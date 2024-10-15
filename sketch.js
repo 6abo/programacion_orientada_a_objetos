@@ -1,3 +1,4 @@
+
 /*
 let posX, posY;
 let velX, velY;
@@ -15,7 +16,7 @@ function setup() {
   diam = rad*2
   posX = random(rad, width - rad);
   posY = random(rad, height - rad);
-
+  
   velX = random(-10, 10);
   velY = random(-10, 10);
   bgColor = color(random(255), random(100), random(255));
@@ -40,7 +41,7 @@ function draw() {
 
 
   circle(posX, posY, diam)
-}
+  }
 
 function changeBackgroundColor() {
     bgColor = color(random(255), random(100), random(255)); // Cambiar a un color aleatorio
@@ -48,7 +49,7 @@ function changeBackgroundColor() {
 
 */
 
-let bgColor;
+/*let bgColor;
 let pelotas = [];
 
 function setup() {
@@ -83,7 +84,7 @@ class Pelota {
   update() {
     this.posX += this.velX;
     this.posY += this.velY;
-
+    
     if (this.posX > width - this.rad || this.posX < this.rad) {
       this.velX *= -1;
     }
@@ -98,4 +99,29 @@ class Pelota {
     noStroke();
     circle(this.posX, this.posY, this.diam);
   }
+}*/
+
+let particulas = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+ 
+}
+      
+function draw() {
+  background(20);
+  let nuevaParticula = new Particula(mouseX, mouseY);
+  particulas.push(nuevaParticula);
+
+  for(let i = 0; i < particulas.length; i++){
+    particulas[i].update();
+    particulas[i].display();
+  }
+  for(let i = 0; i < particulas.length; i++){
+    if(!particulas[i].estaViva){
+      particulas.splice(i , 1);
+
+    }
+  }
+  console.log(particulas.length);
 }
